@@ -715,3 +715,34 @@ class TwinButton(NameMixin):
         self.on_long_press_a = self._decode_rpc_action('on_long_press_a', action_config)
         self.on_long_press_b = self._decode_rpc_action('on_long_press_b', action_config)
         self.on_long_press_ab = self._decode_rpc_action('on_long_press_ab', action_config)
+
+class RotaryMCP3008(NameMixin):
+    """
+    A analog rotary used as digital input.
+    """
+
+    def __init__(self, channel, scale, pin_factory=None, name=None):
+        super().__init__(name=name)
+        # super().__init__(
+        #
+        #    pin_factory=pin_factory, name=name)
+        self._rotary = gpiozero.MCP3008(channel)
+        self.scale = scale
+
+    def set_rpc_actions(self, action_config):
+        self.action = self._decode_rpc_action('on_rotate', action_config)
+        # threading damit while loop lÃ¤uft aber programm nicht unterbrochen wird
+
+        def volume_input(self):
+            while True:
+                self.action(int(self.scale * self._rotary.value))
+                time.sleep(0.1)
+
+        threading.Thread(target=volume_input, daemon=True,
+                         args=(self,)).start()
+
+    def close(self):
+        """
+        Close the device and release the pin
+        """
+        self._rotary.close()
