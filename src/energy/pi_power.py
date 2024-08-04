@@ -148,8 +148,8 @@ battery_max_voltage = 4.0
 adc_conversion_factor = (gpio_max_voltage / voltage_divider(voltage_divider_r1, voltage_divider_r2, usb_max_voltage)) * usb_max_voltage
 
 
-pi_power_status_path = '/home/pi/.pi_power_status'
-pi_power_log_path    = '/home/pi/pi_power_log.csv'
+pi_power_status_path = '/home/pi/RPi-Jukebox-RFID/src/energy/.pi_power_status'
+pi_power_log_path    = '/home/pi/RPi-Jukebox-RFID/src/energy/pi_power_log.csv'
 
 
 # initialize an empty log file

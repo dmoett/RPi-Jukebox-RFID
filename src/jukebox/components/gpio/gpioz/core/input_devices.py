@@ -22,6 +22,7 @@ import gpiozero
 from abc import ABC, abstractmethod
 import logging
 import jukebox.utils
+import time
 
 logger = logging.getLogger('jb.gpioz')
 

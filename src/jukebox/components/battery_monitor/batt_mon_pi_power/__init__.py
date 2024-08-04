@@ -32,7 +32,7 @@ logger = logging.getLogger('jb.battmon')
 
 batt_mon = None
 
-pi_power_file_path = '/home/pi/.pi_power_status'
+pi_power_file_path = '/home/pi/RPi-Jukebox-RFID/src/energy/.pi_power_status'
 
 
 class battmon_pipower(BatteryMonitorBase.BattmonBase):
